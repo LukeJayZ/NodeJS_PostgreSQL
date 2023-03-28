@@ -3,6 +3,8 @@ const pool = require("./db");
 
 const router = Router();
 
+// Select all users
+
 router.get("/user", async (req, res) => {
   try {
     const {rows} = await pool.query("SELECT* from users");
@@ -11,6 +13,8 @@ router.get("/user", async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+// Select one user with id
 
 router.get("/user/:id", async (req, res) => {
   
@@ -21,6 +25,21 @@ router.get("/user/:id", async (req, res) => {
   } catch (err) {
     res.sendStatus(404);
   }
+});
+
+// Create a new user
+
+router.post("/user", async(req, res)=> {
+  const{firstname, lastname, age}=req.body;
+  try{
+    const{rows} = await pool.query ("INSERT INTO users (first_name, last_name, age) VALUES ($1, $2, $3) RETURNING *"
+    [firstname, lastname, age]
+    );
+    res.json ({ data: rows});
+  } catch(err){
+    res.sendStatus(403)
+  }
+  res.end ();
 })
 
 
