@@ -1,9 +1,14 @@
 const {Pool} = require('pg')
 
-const{PGCONNECTIONSTRING} = porcess.env
+const{PGUSER, PGHOST, PGDATABASE, PGPASSWORD, PGPORT} = process.env
 
 const pool = new Pool ({
-    PGCONNECTIONSTRING
+    user: PGUSER,
+    host: PGHOST,
+    database: PGDATABASE,
+    password: PGPASSWORD,
+    port: PGPORT
+    // PGCONNECTIONSTRING
 })
 
 module.exports = pool;
