@@ -1,11 +1,9 @@
 const {Pool} = require('pg')
 
+const{PGCONNECTIONSTRING} = porcess.env
+
 const pool = new Pool ({
-    user:"",
-    host:"",
-    database:"",
-    password:"",
-    port:""
+    PGCONNECTIONSTRING
 })
 
 module.exports = pool;

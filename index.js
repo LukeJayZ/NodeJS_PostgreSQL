@@ -1,5 +1,6 @@
 const app = require('./server')
 const port = 8000
+require("dotenv").config();
 
 
 app.listen(port, () => {
