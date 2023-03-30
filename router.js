@@ -14,7 +14,7 @@ router.get("/user", async (req, res) => {
   }
 });
 
-// Select one user with id
+// Select one user by id
 
 router.get("/user/:id", async (req, res) => {
   
@@ -32,7 +32,7 @@ router.get("/user/:id", async (req, res) => {
 router.post("/user", async(req, res)=> {
   const{firstname, lastname, age}=req.body;
   try{
-    const{rows} = await pool.query ("INSERT INTO users (first_name, last_name, age) VALUES ($1, $2, $3) RETURNING *"
+    const{rows} = await pool.query ("INSERT INTO users (first_name, last_name, age) VALUES ($1, $2, $3) RETURNING *",
     [firstname, lastname, age]
     );
     res.json ({ data: rows});
